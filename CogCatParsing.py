@@ -5,10 +5,23 @@ import re
 import numpy as np
 import glob
 import sys
+import argparse
 
+
+#get the command line arguments
+parser = argparse.ArgumentParser(description='Script for parsing COG categories from genome annotation tsv files') 
+
+#add wanted arguments
+parser.add_argument('-i', '--input', type=str, metavar='', required=True, help='Full path of directory containing genome annotation files (TSV)')
+parser.add_argument('-j', '--job', type=str, metavar='', required=True, help='name for the job to create file names')
+#assign arguments to parser
+args = parser.parse_args() 
+#store each argument as a variable
+input = args.input
+job = args.job
 
 ###set working directory
-os.chdir("/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure")
+os.chdir(input)
 
 ###create a list of filenames and a list of COG category letters
 #module glob.glob
@@ -67,5 +80,5 @@ for file in tsvfiles:
 
 print(twowaytabledf)
 
-twowaytabledf.to_csv("twowaytabledf.tsv",sep="\t")
+twowaytabledf.to_csv(job + "_twowaytabledf.tsv",sep="\t")
 
