@@ -3,11 +3,12 @@ import pandas as pd
 import os
 import re
 import numpy as np
-import matplotlib.pyplot as plt
 import glob
+import sys
+
 
 ###set working directory
-os.chdir('//Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/Enterococcus/AnnotationTables/TableTSVFiles')
+os.chdir("/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure")
 
 ###create a list of filenames and a list of COG category letters
 #module glob.glob
@@ -15,7 +16,7 @@ os.chdir('//Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Ai
 CatList=list('A''B''C''D''E''F''G''H''I''J''K''L''M''N''O''P''Q''R''S''T''U''V''W''X''Z')
 
 
-tsvfiles=glob.glob('*.tsv')
+tsvfiles=glob.glob('TablesClean/*.tsv')
 
 twowaytabledf=pd.DataFrame()
 

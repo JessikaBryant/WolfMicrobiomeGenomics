@@ -11,12 +11,12 @@ for (k in 1:length(packages)){
   }
 }
 #set working directory
-setwd("/Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/WolfMicrobiomeGenomics")
+setwd("/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure")
 
 #load in COG Category File
 COGCAT<-read.delim(file="Cog_Cat.tsv", sep="\t")
 
-COGDir<-"/Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/WolfMicrobiomeGenomics/TSVFromJGI/"
+COGDir<-"/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Tables"
 
 #load in genome annotation tsv file
 temp <- list.files(path = COGDir, pattern="\\.tsv$")
@@ -54,7 +54,7 @@ for(i in seq_along(temp)){
 # write each to new tsv
 View(dataframelist_Clean)
 
-outputpath="/Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/WolfMicrobiomeGenomics/TSVClean/"
+outputpath="/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/TablesClean"
 
 write_tsv(dataframelist_Clean, paste0(outputpath, temp[i]))
 
