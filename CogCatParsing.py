@@ -29,7 +29,7 @@ os.chdir(input)
 CatList=list('A''B''C''D''E''F''G''H''I''J''K''L''M''N''O''P''Q''R''S''T''U''V''W''X''Z')
 
 
-tsvfiles=glob.glob('TablesClean/*.tsv')
+tsvfiles=glob.glob(input + '*.tsv')
 
 twowaytabledf=pd.DataFrame()
 
@@ -50,13 +50,15 @@ for file in tsvfiles:
     
     #read in each tsvfile as a temporary dataframe to easily read
     tempfulldf=pd.read_csv(str(file), sep="\t")
-    
+    #print(tempfulldf["Cat"])
+
     #Get the "Cat" column as a list
-    cats_list_temp=list(tempfulldf['Cat'])
-        
-    cleanedList = [x for x in cats_list_temp if x == x]
+    cats_list_temp=list(tempfulldf["Cat"])
+    #print(tempfulldf)
     
     #remove the NaN from each dataframe
+    cleanedList = [x for x in cats_list_temp if x == x]
+    #print(cleanedList)
     #newtemfullpdf=tempfulldf.replace([np.nan, -np.inf], 0)
     
     #store the Cat column to lists
@@ -69,16 +71,15 @@ for file in tsvfiles:
         #remove the NaN and replace as 0
         #tempemptydf.replace([np.nan, -np.inf], 0)
         #Use the findall function to ‘count’ the number of occurances of the letter in the list
-        print(letter)
+        #print(letter)
         matches=re.findall(letter, str(cleanedList))
+        
         #Add the number of occurances to the temporary "empty" dataframe
         #tempemptydf[letter]=len(matches)
-        print(len(matches))
-        
+        #print(len(matches))
         #add values to 
         twowaytabledf.loc[file,letter]=int(len(matches))
 
 print(twowaytabledf)
 
 twowaytabledf.to_csv(job + "_twowaytabledf.tsv",sep="\t")
-
