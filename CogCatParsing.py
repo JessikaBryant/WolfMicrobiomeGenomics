@@ -12,11 +12,13 @@ import argparse
 parser = argparse.ArgumentParser(description='Script for parsing COG categories from genome annotation tsv files') 
 
 #add wanted arguments
+parser.add_argument('-o', '--ouput', type=str, metavar='', required=True, help='Full path of output directory where table will go')
 parser.add_argument('-i', '--input', type=str, metavar='', required=True, help='Full path of directory containing genome annotation files (TSV)')
 parser.add_argument('-j', '--job', type=str, metavar='', required=True, help='name for the job to create file names')
 #assign arguments to parser
 args = parser.parse_args() 
 #store each argument as a variable
+output = args.ouput
 input = args.input
 job = args.job
 
@@ -82,4 +84,4 @@ for file in tsvfiles:
 
 print(twowaytabledf)
 
-twowaytabledf.to_csv(job + "_twowaytabledf.tsv",sep="\t")
+twowaytabledf.to_csv(output+ job +"_twowaytabledf.tsv",sep="\t")
