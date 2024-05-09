@@ -23,11 +23,11 @@ if (!requireNamespace("ggtree", quietly = TRUE)){
 }
 library(ggtree)
 
-"#install and load ggrepel
+#install and load ggrepel
 if (!requireNamespace("ggrepel", quietly = TRUE)){
   BiocManager::install("ggrepel")
 }
-library(ggrepel)"
+library(ggrepel)
 
 ###Install and load several packages that are installed with the standard base install function
 #Make a list of package names that we'll need
