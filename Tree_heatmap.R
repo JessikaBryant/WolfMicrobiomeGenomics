@@ -18,16 +18,16 @@ if (!requireNamespace("treeio", quietly = TRUE)){
 library(treeio)
 
 #Install and load ggtree if it isn't already
-if (!requireNamespace("treeio", quietly = TRUE)){
+if (!requireNamespace("ggtree", quietly = TRUE)){
   BiocManager::install("ggtree")
 }
 library(ggtree)
 
-#install and load ggrepel
-if (!requireNamespace("treeio", quietly = TRUE)){
+"#install and load ggrepel
+if (!requireNamespace("ggrepel", quietly = TRUE)){
   BiocManager::install("ggrepel")
 }
-library(ggrepel)
+library(ggrepel)"
 
 ###Install and load several packages that are installed with the standard base install function
 #Make a list of package names that we'll need
@@ -64,7 +64,7 @@ root_tree<-root(tree, outgroup = outgroup1, resolve.root = TRUE)
 
 #Read in table
 file_from_parsing<-args[4]
-df<-read.csv(file = "/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_output/EnteroCogCatTableFinal.tsv", sep = "\t", header = TRUE)
+df<-read.csv(file = file_from_parsing, sep = "\t", header = TRUE)
 
 #Add row names
 row.names(df)<-df$Taxon_ID
