@@ -31,7 +31,8 @@ library(ggrepel)
 
 ###Install and load several packages that are installed with the standard base install function
 #Make a list of package names that we'll need
-package_list<-c("ape", "ips", "igraph", "Biostrings", "phytools", "seqinr", "dplyr", "ggplot2", "ggnewscale")
+package_list<-c("ape", "ips", "igraph", "Biostrings", "seqinr", "phytools", "dplyr", "ggplot2", "ggnewscale")
+
 
 #Loop to check if package is installed and loaded. If not, install/load
 #If you get a warning saying "there is no package called <XYZ>", run the loop again
@@ -52,40 +53,45 @@ filepath<-args[2]
 tree<-read.tree(file = filepath)
 
 #Look at tree
-plot.phylo(tree)
+#plot.phylo(tree)
 tree$tip.label
 
 #Root the tree
 outgroup1<-args[3]
 root_tree<-root(tree, outgroup = outgroup1, resolve.root = TRUE)
 #root_tree$edge.length<-c(1,1,1,1,1,1,1,1,1,1,1,1)
-finaltree<-plot.phylo(root_tree)
+#finaltree<-plot.phylo(root_tree)
 
 #Read in table
 file_from_parsing<-args[4]
-df<-read.csv(file = file_from_parsing, sep = "\t", header = TRUE)
+df<-read.csv(file = "/scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_output/EnteroCogCatTableFinal.tsv", sep = "\t", header = TRUE)
 
 #Add row names
 row.names(df)<-df$Taxon_ID
 
 #Remove the taxon ID column
 df_new<-df[,-1]
-
+#print(df_new)
 
 
 ###Make plots
 ###write the figure to a pdf
 #output argument
-outputpath_andname=args[5]
+outputpathandname=args[4]
+print(outputpathandname)
+
 #open pdf to write
-pdf(file=outputpath_andname, width = 4, height = 4, )#width and height = in inches
+pdf(file=outputpathandname, width = 12, height = 8)#width and height = in inches
 
 #make tree
-rec_tree<-ggtree(root_tree)
+rec_tree<-ggtree(tr = root_tree, branch.length='none')
 #add table
 p1<-rec_tree + geom_tiplab()
 #edit tree size, color and table color and size
-p2<-gheatmap(p1, df_new, offset = 0.05, width = 2.5)+scale_fill_viridis_c(option="G", name="Number of genes\n in COG category", direction = -1)
+p2<-gheatmap(p1, df_new, offset = 0.05, width = 2.5) + 
+  scale_fill_viridis_c(option="G", name="Number of genes\n in COG category", direction = -1)
 
+p2  
+#plot(p2)
 #Run dev.off() to create the file!
 dev.off()#necessary to write a file to pdf in R
