@@ -1,3 +1,6 @@
+#!/usr/bin/env Rscript
+args = commandArgs(trailingOnly=TRUE)
+
 #Script for making a tree heatmap figure
 
 #The BiocManager package is needed in order to install some other packages
@@ -41,22 +44,26 @@ for(k in 1:length(package_list)){
 }
 
 #Set working directory
-setwd("/Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/Enterococcus/AnnotationTables/")
+workingdirectory<-args[1]
+setwd(workingdirectory)
 
 #Read in the tree
-tree<-read.tree(file = "/Users/jessikagrindstaff/Documents/Documents - Jessika’s MacBook Air/School2324/Research/Enterococcus/AnnotationTables/RAxML_bipartitions.AllEntero16sWithWae7")
+filepath<-args[2]
+tree<-read.tree(file = filepath)
 
 #Look at tree
 plot.phylo(tree)
 tree$tip.label
 
 #Root the tree
-root_tree<-root(tree, outgroup = "Enterococcus_faecium_16346_CP021849", resolve.root = TRUE)
+outgroup1<-args[3]
+root_tree<-root(tree, outgroup = outgroup1, resolve.root = TRUE)
 #root_tree$edge.length<-c(1,1,1,1,1,1,1,1,1,1,1,1)
 finaltree<-plot.phylo(root_tree)
 
 #Read in table
-df<-read.csv(file = "Cog_cat_count_transpose.tsv", sep = "\t", header = TRUE)
+file_from_parsing<-args[4]
+df<-read.csv(file = file_from_parsing, sep = "\t", header = TRUE)
 
 #Add row names
 row.names(df)<-df$Taxon_ID
@@ -64,8 +71,21 @@ row.names(df)<-df$Taxon_ID
 #Remove the taxon ID column
 df_new<-df[,-1]
 
-#Make plots
-rec_tree<-ggtree(root_tree)
-p1<-rec_tree + geom_tiplab()
 
+
+###Make plots
+###write the figure to a pdf
+#output argument
+outputpath_andname=args[5]
+#open pdf to write
+pdf(file=outputpath_andname, width = 4, height = 4, )#width and height = in inches
+
+#make tree
+rec_tree<-ggtree(root_tree)
+#add table
+p1<-rec_tree + geom_tiplab()
+#edit tree size, color and table color and size
 p2<-gheatmap(p1, df_new, offset = 0.05, width = 2.5)+scale_fill_viridis_c(option="G", name="Number of genes\n in COG category", direction = -1)
+
+#Run dev.off() to create the file!
+dev.off()#necessary to write a file to pdf in R
