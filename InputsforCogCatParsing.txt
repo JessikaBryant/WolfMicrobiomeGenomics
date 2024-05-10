@@ -1,0 +1,1 @@
+python CogCatParsing.py -w /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/ -i /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/TablesClean/ -o /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_output/ -j EnterococcusTable

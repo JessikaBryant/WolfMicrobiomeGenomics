@@ -45,8 +45,6 @@ twowaytabledf.replace([np.nan, -np.inf], int(0))
 
 
 for file in tsvfiles:
-    
-    
     #clean up file name  all that remains is the isolate name for a cleaner table
     
     isolate=str(file.replace(input,""))#replace the folder location with nothing
