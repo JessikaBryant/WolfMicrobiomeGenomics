@@ -85,3 +85,5 @@ for file in tsvfiles:
 print(twowaytabledf)
 
 twowaytabledf.to_csv(output+ job +"_twowaytabledf.tsv",sep="\t")
+
+
