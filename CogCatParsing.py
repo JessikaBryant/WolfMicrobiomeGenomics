@@ -7,13 +7,13 @@ import glob
 import sys
 import argparse
 
-
 #get the command line arguments
 parser = argparse.ArgumentParser(description='Script for parsing COG categories from genome annotation tsv files') 
 
 #add wanted arguments
 parser.add_argument('-o', '--ouput', type=str, metavar='', required=True, help='Full path of output directory where table will go')
 parser.add_argument('-i', '--input', type=str, metavar='', required=True, help='Full path of directory containing genome annotation files (TSV)')
+parser.add_argument('-w', '--working', type=str, metavar='', required=True, help='Full path of working directory')
 parser.add_argument('-j', '--job', type=str, metavar='', required=True, help='name for the job to create file names')
 #assign arguments to parser
 args = parser.parse_args() 
@@ -21,22 +21,20 @@ args = parser.parse_args()
 output = args.ouput
 input = args.input
 job = args.job
-
+working=args.working
 ###set working directory
-os.chdir(input)
+os.chdir(working)
 
 ###create a list of filenames and a list of COG category letters
 #module glob.glob
 #give variable and pattern (such as *.tsv) and gives list of path to files
-CatList=list('A''B''C''D''E''F''G''H''I''J''K''L''M''N''O''P''Q''R''S''T''U''V''W''X''Z')
+CatList=list('A''B''C''D''E''F''G''H''I''J''K''L''M''N''O''P''Q''R''S''T''U''V''W''X''Z') #list for COG Category Letters
 
+tsvfiles=glob.glob(input+ "*.tsv") #get the list of cleaned files
 
-tsvfiles=glob.glob(input + '*.tsv')
+twowaytabledf=pd.DataFrame() #empty df for future table to go
 
-twowaytabledf=pd.DataFrame()
-
-twowaytabledf.index=tsvfiles
-
+#twowaytabledf.index=tsvfiles #add names of files to df first column
 
 #add Cat letter to dataframe
 for letter in CatList:
@@ -47,10 +45,12 @@ twowaytabledf.replace([np.nan, -np.inf], int(0))
 
 
 for file in tsvfiles:
-    #create a temporary dataframe to store matches
-    #tempemptydf=pd.DataFrame(tsvfiles)
     
-    #read in each tsvfile as a temporary dataframe to easily read
+    
+    #clean up file name  all that remains is the isolate name for a cleaner table
+    
+    isolate=str(file.replace(input,""))#replace the folder location with nothing
+    isolatenameclean=str(isolate.replace(".tsv",""))    #replace the tsv with nothing,
     tempfulldf=pd.read_csv(str(file), sep="\t")
     #print(tempfulldf["Cat"])
 
@@ -80,10 +80,14 @@ for file in tsvfiles:
         #tempemptydf[letter]=len(matches)
         #print(len(matches))
         #add values to 
-        twowaytabledf.loc[file,letter]=int(len(matches))
+        twowaytabledf.loc[isolatenameclean,letter]=int(len(matches))
+
 
 print(twowaytabledf)
+sys.exit()
+outfile=output+"_"+ job +"_df.tsv"
+print(outfile)
+#twowaytabledf.to_csv(outfile, sep="\t")
 
-twowaytabledf.to_csv(output+ job +"_twowaytabledf.tsv",sep="\t")
 
 
