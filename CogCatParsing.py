@@ -81,11 +81,8 @@ for file in tsvfiles:
         twowaytabledf.loc[isolatenameclean,letter]=int(len(matches))
 
 
-print(twowaytabledf)
-sys.exit()
-outfile=output+"_"+ job +"_df.tsv"
-print(outfile)
-#twowaytabledf.to_csv(outfile, sep="\t")
-
+outfile=output+ job +".tsv"
+twowaytabledf.to_csv(outfile, sep="\t")
+#print(twowaytabledf)
 
 
