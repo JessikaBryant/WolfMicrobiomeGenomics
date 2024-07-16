@@ -1,0 +1,5 @@
+Table: ['Enterococcus_aquimarinus_DSM_17690', 'Wae12_Cog_Annotation', 'Enterococcus_timonensis_Marseille', 'Enterococcus_diestrammenae_DSM_29072', 'Wae2A_Annotations', 'Wae7_Cog_Annotation', 'Enterococcus_sp._WCA-130-P53-23F']
+
+Tree:['Enterococcus_aquimarinus_strain_DSM_17690','Wae12B_cleanest', 'Enterococcus_timonensis_Marseille_P2817', NA, 'Wae2aContigs','Wae7a']
+
+sed 's/Wae7_Cog_Annotation/Wae7a/' Parsed_Table_output/EnterococcusTable.tsv 
