@@ -1,7 +1,7 @@
 workingdirectory = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/
-treesdirectory = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Raxml/RAxML_bipartitions.EnterococcusTree
+treesdirectory = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/RAxML_bipartitions.EnterococcusTree
 outgroup = Wae2aContigs
-Table = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_outputEntero_Final_twowaytabledf.tsv
+Table = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_output/EnterococcusTable.tsv
 outputdirandfilename = /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Tree_Heatmap/Tree_Heatmap.pdf
 
-Rscript --vanilla Tree_heatmap.R /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/ /scratch/bryantj2/wolfmicrobiomes/enterococcus/Raxml/RAxML_bipartitions.EnterococcusTree Wae2aContigs /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_outputEntero_Final_twowaytabledf.tsv /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Tree_Heatmap/Tree_Heatmap.pdf
+Rscript --vanilla Tree_heatmap.R /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/ /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/RAxML_bipartitions.EnterococcusTree Wae2aContigs /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Parsed_Table_output/EnterococcusTable.tsv /scratch/bryantj2/wolfmicrobiomes/enterococcus/Figure/Tree_Heatmap/Tree_Heatmap.pdf

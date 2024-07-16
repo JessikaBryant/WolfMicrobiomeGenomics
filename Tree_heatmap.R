@@ -78,7 +78,7 @@ df_new<-df[,-1]
 ###write the figure to a pdf
 #output argument
 outputpathandname=args[4]
-#print(outputpathandname)
+outputpathandname
 
 #open pdf to write
 pdf(file=outputpathandname, width = 12, height = 8)#width and height = in inches

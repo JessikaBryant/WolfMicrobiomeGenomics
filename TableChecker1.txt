@@ -1,0 +1,16 @@
+Enterococcus_aquimarinus_DSM_17690 ID error
+Enterococcus_faecium_16346_CP0218491_COG ID error
+Enterococcus_faecalis_1521_CP091237_Cog_Annotation ID error
+Wae12_Cog_Annotation ID error
+Enterococcus_timonensis_Marseille ID error
+Enterococcus_faecalis_705_CP091235_COG_Annotation ID error
+Enterococcus_diestrammenae_DSM_29072 ID error
+Wae2A_Annotations ID error
+Enterococcus_faecalis_661_CP091227_COG_annotation ID error
+Wae7_Cog_Annotation ID error
+Enterococcus_faecalis_AKSZ208_CP110289_COG_Annotation ID error
+Enterococcus_sp._WCA-130-P53-23F ID error
+['Enterococcus_aquimarinus_DSM_17690', 'Enterococcus_faecium_16346_CP0218491_COG', 'Enterococcus_faecalis_1521_CP091237_Cog_Annotation', 'Wae12_Cog_Annotation', 'Enterococcus_timonensis_Marseille', 'Enterococcus_faecalis_705_CP091235_COG_Annotation', 'Enterococcus_diestrammenae_DSM_29072', 'Wae2A_Annotations', 'Enterococcus_faecalis_661_CP091227_COG_annotation', 'Wae7_Cog_Annotation', 'Enterococcus_faecalis_AKSZ208_CP110289_COG_Annotation', 'Enterococcus_sp._WCA-130-P53-23F']
+['Enterococcus_faecalis_705_CP091235', 'Wae7a', 'Wae12B_cleanest', 'Enterococcus_faecalis_661_CP091227', 'Enterococcus_faecalis_AKSZ_CP110289', 'Enterococcus_casseliflavus_F1129E_107', 'Enterococcus_faecalis_1521_CP091237', 'Enterococcus_wangshanyuanii_MN05_Bos_grunniens', 'Enterococcus_hirae_F0221F_224', 'Enterococcus_hirae_1013', 'Enterococcus_villorum_F1129D_143', 'Enterococcus_durans_F0321E_104', 'Enterococcus_sp_WCA_130_P53_23F', 'Enterococcus_casseliflavus_NLAE_zl_C414', 'Enterococcus_gallinarum_EG1', 'Enterococcus_gallinarum_9402', 'Enterococcus_gallinarum_SKF1', 'Enterococcus_aquimarinus_strain_DSM_17690', 'Enterococcus_columbae_DSM_7374', 'Enterococcus_cecorum_An144', 'Enterococcus_canintestini_DSM_21207', 'Enterococcus_canis_NBRC_100695', 'Enterococcus_timonensis_Marseille_P2817', 'Wae2aContigs']
+
+sed -i 's/Enterococcus_sp._WCA-130-P53-23F/Enterococcus_sp_WCA_130_P53_23F/' Parsed_Table_output/EnterococcusTableWithFaecalis.tsv
